@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>My Cars</h2>
+<a href="{% url 'car-create' %}">Add New Car</a>
+<form method="get">
+    <input type="text" name="search" placeholder="Search cars...">
+    <button type="submit">Search</button>
+</form>
+<ul>
+    {% for car in cars %}
+        <li>
+            <a href="{% url 'car-detail' car.id %}">{{ car.title }}</a> - {{ car.description }}
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

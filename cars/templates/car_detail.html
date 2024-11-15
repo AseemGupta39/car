@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>{{ car.title }}</h2>
+<p>{{ car.description }}</p>
+<p>Tags: {{ car.tags }}</p>
+<h3>Images</h3>
+{% for image in car.images.all %}
+    <img src="{{ image.image.url }}" alt="Car Image" style="width: 200px;">
+{% endfor %}
+<br>
+<a href="{% url 'car-update' car.id %}">Edit</a>
+<form method="post" action="{% url 'car-delete' car.id %}">
+    {% csrf_token %}
+    <button type="submit">Delete</button>
+</form>
+{% endblock %}
